@@ -73,7 +73,7 @@ class RGBAndDepthDataset(Dataset):
         # coco and pascal voc
 
         image = TF.to_tensor(Image.open(image_loc).convert("RGB"))
-        depth = TF.to_tensor(Image.open(depth_loc))
+        depth = TF.to_tensor(Image.open(depth_loc).convert("L"))
         depth_normalized = depth.float() / 512.0
         depth_normalized = 1.0 / (depth_normalized[:, None] + 1e-6)
         depth_normalized = (
